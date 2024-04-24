@@ -1,4 +1,4 @@
-import screamingFire from '~/_assets/scream-fire.png';
+import skullVolcano from '~/_assets/skullVolcano.png';
 import { useStore } from '@nanostores/react';
 import { useSearchParams } from 'next/navigation';
 import autoAnimate from '@formkit/auto-animate';
@@ -127,7 +127,7 @@ export default function Explore({ pubs, typeFilter }: Props) {
 				href="graph"
 				className="fixed bottom-0 right-0 opacity-0 hover:opacity-100 transition-opacity"
 			>
-				<Image src={screamingFire} className="w-24" alt="Link to graph view" />
+				<Image src={skullVolcano} className="w-24" alt="Link to graph view" />
 			</a>
 		</div>
 	);
