@@ -16,8 +16,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/_co
 import Link from 'next/link';
 import { getAuthorsByPubId, getPubHeaderText } from '~/_utils/pubs';
 import PubTable from '~/_components/PubTable';
-import { useEffect } from 'react';
-import { getGoogleDocById } from '~/_utils/gdocs';
 
 export default function Pub() {
 	const params = useParams<{ id: string }>();
@@ -54,30 +52,7 @@ export default function Pub() {
 			return connectionId === pub.id;
 		});
 	});
-	const updateGoogleDoc = async () => {
-		if (activePub.pubType === 'Google Doc' && activePub.url) {
-			const parts = activePub.url.split('document/d/')[1].split('/');
-			const docId = parts[0];
-			const [docTitle, docContent] = await getGoogleDocById(docId);
-			const updatedFields = {
-				title: docTitle,
-				content: docContent,
-			};
-			$pubs.set(
-				$pubs.get().map((pub) => {
-					if (pub.id === activePub.id) {
-						return { ...pub, ...updatedFields };
-					}
-					return pub;
-				})
-			);
-		}
-	};
-	useEffect(() => {
-		setTimeout(() => {
-			updateGoogleDoc();
-		}, 2500);
-	}, []);
+
 	return (
 		<div>
 			<Breadcrumb className="hidden md:flex">

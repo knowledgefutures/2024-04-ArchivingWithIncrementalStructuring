@@ -3,14 +3,17 @@ import linkIcon from '~/_assets/link.svg';
 import type { Pub } from '~/_store/data';
 import { getAuthorsByPubId } from '~/_utils/pubs';
 import { slugifyString } from '~/_utils/strings';
+import { Card } from '~/_components/ui/card';
+import { Button } from '~/_components/ui/button';
+import { Workflow } from 'lucide-react';
 
 export default function PubExploreCard(props: Partial<Pub> & { connections: Array<any> }) {
 	// @ts-ignore
 	const { id = '', title, pubType, referenceId, url, connections } = props;
 	const contributors = getAuthorsByPubId(id).join(', ');
 	return (
-		<div className="flex items-center border border-slate-600 rounded mt-4 mb-4 font-sans max-w-xl">
-			<Link className="flex-auto no-underline group p-4 " href={`/p/${slugifyString(id)}`}>
+		<Card className="dark my-4  max-w-xl flex items-top">
+			<Link className="flex-auto no-underline group p-4 " href={`/pubs/${slugifyString(id)}`}>
 				<h3 className="group-hover:underline font-bold">{title || referenceId}</h3>
 
 				<div>
@@ -21,13 +24,12 @@ export default function PubExploreCard(props: Partial<Pub> & { connections: Arra
 					</span>
 				</div>
 			</Link>
-			<Link
-				className="flex items-center p-4 hover:bg-slate-100"
-				href={`?focus=${slugifyString(id)}`}
-			>
-				<img src={linkIcon.src} alt="Connections" loading="eager" />
-				{connections.length}
+
+			<Link href={`?focus=${slugifyString(id)}`} scroll={false} className="m-2">
+				<Button variant="ghost">
+					<Workflow className="mr-2 h-4 w-4" /> {connections.length}
+				</Button>
 			</Link>
-		</div>
+		</Card>
 	);
 }

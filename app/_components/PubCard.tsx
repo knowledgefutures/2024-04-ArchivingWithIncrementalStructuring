@@ -7,16 +7,15 @@ import { slugifyString } from '~/_utils/strings';
 
 type Props = {
 	pub: Pub;
-	isExternal: boolean;
 };
 
-export default function PubCard({ pub, isExternal }: Props) {
+export default function PubCard({ pub }: Props) {
 	const contributors = getAuthorsByPubId(pub.id);
 	return (
 		<div className="prose my-8 border-l pl-4">
 			<h4>
 				<Link
-					href={`/${isExternal ? 'external' : 'internal'}/pubs/${slugifyString(pub.id)}`}
+					href={`/pubs/${slugifyString(pub.id)}`}
 					className="no-underline hover:underline"
 				>
 					{getPubHeaderText(pub)}
@@ -25,11 +24,9 @@ export default function PubCard({ pub, isExternal }: Props) {
 			{contributors.length > 0 && (
 				<div className="text-muted-foreground">Contributors: {contributors.join(', ')}</div>
 			)}
-			{!isExternal && (
-				<div className="text-muted-foreground font-mono">
-					type: {pub.pubType} · {pub.published ? 'Published' : 'Unpublished'}
-				</div>
-			)}
+			<div className="text-muted-foreground font-mono">
+				type: {pub.pubType} · {pub.published ? 'Published' : 'Unpublished'}
+			</div>
 		</div>
 	);
 }

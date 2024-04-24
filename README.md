@@ -5,11 +5,11 @@ In collaboration with Astera Institute.
 
 
 ## Todo
-
-- [ ] Make data types real
-- [ ] Make apply submission form create new proposal pub
+- [x] Make data types real
+- [x] Make sample content
+- [x] Make apply submission form create new proposal pub
 - [ ] Create an extract button that turns sample.zip into something larger
-- [ ] Decide how the explore page with show archival data
+- [ ] Decide how the explore page will show archive data
   - Seems like we still want a /pubs/[id] page, we just have to decide how we want to format it.
-- [ ] Make graph page use real data
+- [x] Make graph page use real data
  

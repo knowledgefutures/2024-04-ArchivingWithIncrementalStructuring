@@ -1,11 +1,14 @@
 'use client';
 
+import { useStore } from '@nanostores/react';
 import { Check, CircleCheck, Upload } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import ArchiveBackground from '~/_assets/archive.png';
 import AsteraHeading from '~/_components/AsteraHeader';
+import Explore from '~/_components/Explore';
+import PubTable from '~/_components/PubTable';
 import { Alert, AlertDescription, AlertTitle } from '~/_components/ui/alert';
 import { Button } from '~/_components/ui/button';
 import {
@@ -18,7 +21,6 @@ import {
 } from '~/_components/ui/card';
 import { Input } from '~/_components/ui/input';
 import { Label } from '~/_components/ui/label';
-import { slugifyString } from '~/_utils/strings';
 
 export default function Home() {
 	const [files, setFiles] = useState<Array<string>>([]);
@@ -30,12 +32,21 @@ export default function Home() {
 	const submitFiles = () => {
 		setSuccess(true);
 	};
+	// const [tabValue, setTabValue] = useState('Project');
+	// const pubs = useStore($pubs);
+	// const pubTypes = useStore($pubTypeLibrary);
+	// const activePubs = pubs.filter((pub) => {
+	// 	if (tabValue === 'All') {
+	// 		return true;
+	// 	}
+	// 	return pub.pubType === tabValue;
+	// });
 	return (
 		<div className="-mt-12 relative">
 			<Image src={ArchiveBackground} alt="Landing background image from astera.org" />
 			<AsteraHeading />
-			<div className="absolute text-white text-[5rem] leading-[5rem] top-52 left-24 font-cy max-w-[40rem]">
-				Sharing our formal record of knowledge
+			<div className="absolute text-white text-[5rem] leading-[5rem] top-52 left-24 font-cy max-w-[38rem]">
+				Sharing a formal record of knowledge
 			</div>
 			<div className="bg-[#131313] py-12 px-12 border-t border-zinc-800 pb-48">
 				<div className="max-w-screen-lg m-auto">
@@ -124,8 +135,10 @@ export default function Home() {
 				</div>
 			</div>
 			<div className="bg-[#131313] py-12 px-12 border-t border-zinc-800 pb-48">
-				<div className="max-w-screen-lg m-auto">
+				<div className="max-w-screen-lg m-auto space-y-12">
 					<h2 className="text-white text-5xl font-cy">Explore the Astera Archive</h2>
+
+					<Link href="/explore"><Button className="my-12" variant="outline" size="lg">Go to Explorer</Button></Link>
 				</div>
 			</div>
 		</div>

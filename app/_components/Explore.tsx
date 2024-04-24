@@ -9,8 +9,8 @@ import Image from 'next/image';
 import PubExploreCard from './PubExploreCard';
 import { connectionIsValid } from '~/_utils/pubs';
 
-type Props = { pubs: PubLibrary };
-export default function Explore({ pubs }: Props) {
+type Props = { pubs: PubLibrary; typeFilter: string };
+export default function Explore({ pubs, typeFilter }: Props) {
 	const connections = useStore($connections);
 	const contributors = useStore($people);
 	const allNodes = [...pubs, ...contributors];
@@ -24,13 +24,13 @@ export default function Explore({ pubs }: Props) {
 	return (
 		<div>
 			<div className="">
-				<div className="flex justify-between items-center mb-8 max-w-xl">
-					<h2 className="font-bold text-lg">Explore Pubs</h2>
-				</div>
 				<div ref={parent}>
 					{allNodes
 						.filter((pub) => {
 							if (!focus) {
+								if (typeFilter) {
+									return pub.pubType === typeFilter;
+								}
 								return true;
 							} else {
 								const isFocus = slugifyString(pub.id) === focus;
@@ -90,7 +90,7 @@ export default function Explore({ pubs }: Props) {
 							return (
 								<Fragment key={pub.id}>
 									{firstOfType ? (
-										<div className="capitalize text-xl ml-16">
+										<div className="capitalize text-xl ml-16 text-white">
 											{pub.pubType}
 										</div>
 									) : null}
