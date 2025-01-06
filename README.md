@@ -1,15 +1,15 @@
-# ds003 - Archiving with Incremental Structuring
-In collaboration with Astera Institute.
+# 2024-04 Archiving with Incremental Structuring
 
-## Abstract
+This is a demo site built by [Knowledge Futures](https://www.knowledgefutures.org).
+Content and names on this site may be fabricated for the sake of demonstration.
 
+## 🧞 Commands
 
-## Todo
-- [x] Make data types real
-- [x] Make sample content
-- [x] Make apply submission form create new proposal pub
-- [ ] Create an extract button that turns sample.zip into something larger
-- [x] Decide how the explore page will show archive data
-  - Seems like we still want a /pubs/[id] page, we just have to decide how we want to format it.
-- [x] Make graph page use real data
- 
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at       |
+| `npm run build`           | Build your production         |
+| `npm run start`         | Preview your build locally, before deploying     |
